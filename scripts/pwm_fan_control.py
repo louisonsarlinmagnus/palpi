@@ -17,7 +17,7 @@ try:
     while True:
         temp = float(subprocess.getoutput("vcgencmd measure_temp|sed 's/[^0-9.]//g'"))
         time.sleep(1)
-        if temp >= 80:
+        if temp >= 60:
             dc = 100
             pwm.ChangeDutyCycle(dc)
         else:
