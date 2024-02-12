@@ -47,7 +47,7 @@ sudo docker run hello-world
 1. Ensuring the GPIO lib is isntalled : `pip freeze | grep RPi.GPIO`
 1. Creating a systemd service file : `sudo nano /etc/systemd/system/pwm_fan_control.service`
 1. Ajouter le contenu :
-    ```sh
+    ```ini
     [Unit]
     Description=My Python Script Service
     After=network.target
