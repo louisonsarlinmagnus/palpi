@@ -3,6 +3,7 @@ services:
   dozzle:
     container_name: dozzle
     image: amir20/dozzle:latest
+    restart: no
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
@@ -13,23 +14,18 @@ services:
 
   palworld-server:
     container_name: palworld-server
-    image: thijsvanloef/palworld-server-docker:latest
+    image: jammsen/palworld-dedicated-server:latest
     restart: unless-stopped
     ports:
-      - 8211:8211/udp
-      - 27015:27015/udp
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - PORT=8211
-      - PLAYERS=6
-      - SERVER_PASSWORD="mordhau"
-      - MULTITHREADING=true
-      - RCON_ENABLED=true
-      - RCON_PORT=25575
-      - TZ=Europe/Paris
-      - ADMIN_PASSWORD="adminPasswordHere"
-      - COMMUNITY=false
-      - SERVER_NAME="World of Pals"
+      - target: 8211 # Gamerserver port inside of the container
+        published: 8211 # Gamerserver port on your host
+        protocol: udp
+        mode: host
+      - target: 25575 # RCON port inside of the container
+        published: 25575 # RCON port on your host
+        protocol: tcp
+        mode: host
+    env_file:
+      - ./palworld.env
     volumes:
-      - ./game:/palworld/
+      - ./game:/palworld
