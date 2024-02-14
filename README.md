@@ -41,12 +41,29 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo docker run hello-world
 ```
 
+## Data
+### Migrate data from Xbox Game Pass (XGP) to Dedicated Server
+
+1. Retreive the data from XGP using : [XGP-save-extractor ](https://github.com/Z1ni/XGP-save-extractor/releases)
+1. Create new map launching the dedicated server
+1. Once the files are created, stop the server
+1. Replace `Players/`, `Level.sav` and `LevelMeta.sav` from the export to the new map
+1. Launch the server, connect, create a new character and check that you're in your saved map
+1. Stop the server
+1. Install the tools :
+    ```sh
+    pip install palworld-save-tools
+    git clone https://github.com/xNul/palworld-host-save-fix
+    ```
+1. Then proceed to replace the character you've created earlier by you previous character : `python fix-host-save.py <save_path> <new_guid> <old_guid> <guild_fix>`  
+Exemple :`python tools/palworld-host-save-fix/fix-host-save.py palworld/Pal/Saved/SaveGames/0/902FD5E141B8440C8102A2ED95AD03E9/ 8AB82DD5000000000000000000000000 0B420F96000000000000000000000000 True`
+
 ### Scripts
 #### Fan control PWM
 
 1. Ensuring the GPIO lib is isntalled : `pip freeze | grep RPi.GPIO`
 1. Creating a systemd service file : `sudo nano /etc/systemd/system/pwm_fan_control.service`
-1. Ajouter le contenu :
+1. Add :
     ```ini
     [Unit]
     Description=My Python Script Service
@@ -71,8 +88,3 @@ TIPS :
 - You can stress the CPU to increase the temp with `fulload() { dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null  | dd if=/dev/zero of=/dev/null & }; fulload; read; killall dd`
 The more `| dd if=/dev/zero of=/dev/null ` the higher it will reach
 - You can check the temp with `vcgencmd measure_temp|sed 's/[^0-9.]//g'`
-
-
-
-## Data
-### Migrate data from Xbox Game Pass (XGP) to Dedicated Server
