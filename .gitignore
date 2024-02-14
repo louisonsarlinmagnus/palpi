@@ -8,6 +8,7 @@ game/Manifest_UFSFiles_Linux.txt
 game/PalServer-arm64.sh
 game/PalServer.sh
 game/steamclient.so
+game/DefaultPalWorldSettings.ini
 
 game/Pal/Binaries
 game/Pal/Content
@@ -18,3 +19,5 @@ game/Pal/Saved/Config
 game/Pal/Saved/Crashes
 game/Pal/Saved/ImGui
 game/Pal/Saved/Logs
+
+tools/
