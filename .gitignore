@@ -11,7 +11,7 @@ game/steamclient.so
 game/DefaultPalWorldSettings.ini
 
 game/Pal/Binaries
-game/Pal/Content
+game/Pal/Content/Paks/Pal-LinuxServer.pak
 game/Pal/Intermediate
 game/Pal/Plugins
 
