@@ -57,6 +57,7 @@ sudo docker run hello-world
     ```
 1. Then proceed to replace the character you've created earlier by you previous character : `python fix-host-save.py <save_path> <new_guid> <old_guid> <guild_fix>`  
 Exemple :`python tools/palworld-host-save-fix/fix-host-save.py palworld/Pal/Saved/SaveGames/0/902FD5E141B8440C8102A2ED95AD03E9/ 8AB82DD5000000000000000000000000 0B420F96000000000000000000000000 True`
+1. Replace your local datas
 
 ### Scripts
 #### Fan control PWM
